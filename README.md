@@ -5,17 +5,21 @@
 
 ## Description
 
-Game's purpose and description
+Game's about getting the droplets while moving User right to left of the canvas.
+This game is About getting all the bricks without missing any, it's really important that the User gets the bricks before they hit ground otherwise player keep loosing points until completely loose the game.
 
 ## User stories MVP
 
 Minimum user stories:
 
-- User can ...
+- User can move right by hitting right arrow on the keyboard.
+- User can move left by hitting left arrow on the keyboard.
+- User will loose if scores get to 0.
+- User can
 
 ## User stories Backlog
 
-- User can ...
+- User will sum points when it catches any droplet.
 
 ## File structure
 
