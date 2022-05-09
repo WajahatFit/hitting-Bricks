@@ -9,12 +9,12 @@ class Player {
     moveRight (){
         this.x += 25;
         if(this.x + this.width > 1000){
-            this.x = 990;
+            this.x = 800;
         } 
     }
     moveLeft () {
         this.x -= 25;
-        if(this.x + this.width < 0){
+        if(this.x < 0){
             this.x = 0;
         } 
     }

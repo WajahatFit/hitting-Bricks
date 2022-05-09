@@ -37,8 +37,6 @@ class Game{
   _drawSpaceBar() {
     this.ctx.fillStyle = 'green';
     this.ctx.fillRect(this.spaceBar.x, this.spaceBar.y, this.spaceBar.width, this.spaceBar.height);
-    this.ctx.strokeRect(450,550,200,20);
-
   }
 
   _drawCircle () {
@@ -103,7 +101,12 @@ class Game{
     });
   }
 
+  _clean(){
+    this.ctx.clearRect(0, 0, 1000, 600);
+  }
+
   _update() {
+    this._clean();
     this._drawBricks();
     this._drawCircle();
     this._drawSpaceBar();
