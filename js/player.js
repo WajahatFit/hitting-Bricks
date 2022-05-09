@@ -8,14 +8,14 @@ class Player {
 
     moveRight (){
         this.x += 25;
-        if(this.x > 1000){
-            this.x = 0;
+        if(this.x + this.width > 1000){
+            this.x = 990;
         } 
     }
     moveLeft () {
         this.x -= 25;
-        if(this.x < 0){
-            this.x = 1000;
+        if(this.x + this.width < 0){
+            this.x = 0;
         } 
     }
 
@@ -29,6 +29,13 @@ class Circle {
         this.dx = dx;
         this.dy = dy; 
     }
+}
 
-    
+class Brick {
+    constructor(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;    
+    }
 }
