@@ -1,10 +1,12 @@
-class Game{
+class Game {
   constructor(context) {
     this.ctx = context;
     this.spaceBar = new Player (450, 550, 200, 20);
     this.circle = new Circle (200, 200, 20, 5, 4);
-    this.brick = new Brick (10, 10, 60 , 10);
-    this.brick1 = new Brick (80, 10, 60 , 10);
+    this.bricks = [];
+    this.generateInterval = undefined;
+  }
+    /*this.brick1 = new Brick (80, 10, 60 , 10);
     this.brick2 = new Brick (150, 10, 60 , 10);
     this.brick3 = new Brick (220, 10, 60 , 10);
     this.brick4 = new Brick (290, 10, 60 , 10);
@@ -31,9 +33,22 @@ class Game{
     this.brick25 = new Brick (710, 30, 60 , 10);
     this.brick26 = new Brick (780, 30, 60 , 10);
     this.brick27 = new Brick (850, 30, 60 , 10);
-    this.brick28 = new Brick (920, 30, 60 , 10);
+    this.brick28 = new Brick (920, 30, 60 , 10);*/
+    _drawBricks () {
+      
+      this.bricks.forEach((elem) => {
+        this.ctx.fillRect(elem.brick.x, elem.brick.y, elem.brick.width, elem.brick.height);
+      })
+      
+       for (let i=1; i<4;i++){
+        console.log('bricks')};
+      }
     
 
+  _generateBricks () {
+    const brick = new Brick (20, 10, 60 , 10);
+    this.bricks.push(brick);
+    console.log(this.bricks);
   }
   _drawSpaceBar() {
     this.ctx.fillStyle = 'green';
@@ -58,10 +73,7 @@ class Game{
        }
  }
 
-  _drawBricks () {
-    this.ctx.fillStyle = 'brown';
-    this.ctx.fillRect(this.brick.x, this.brick.y, this.brick.width, this.brick.height);
-    this.ctx.fillRect(this.brick1.x, this.brick1.y, this.brick1.width, this.brick1.height);
+    /*this.ctx.fillRect(this.brick1.x, this.brick1.y, this.brick1.width, this.brick1.height);
     this.ctx.fillRect(this.brick2.x, this.brick2.y, this.brick2.width, this.brick2.height);
     this.ctx.fillRect(this.brick3.x, this.brick3.y, this.brick3.width, this.brick3.height);
     this.ctx.fillRect(this.brick4.x, this.brick4.y, this.brick4.width, this.brick4.height);
@@ -88,8 +100,8 @@ class Game{
     this.ctx.fillRect(this.brick25.x, this.brick25.y, this.brick25.width, this.brick25.height);
     this.ctx.fillRect(this.brick26.x, this.brick20.y, this.brick20.width, this.brick20.height);
     this.ctx.fillRect(this.brick27.x, this.brick27.y, this.brick27.width, this.brick27.height);
-    this.ctx.fillRect(this.brick28.x, this.brick28.y, this.brick28.width, this.brick28.height);
-  }
+    this.ctx.fillRect(this.brick28.x, this.brick28.y, this.brick28.width, this.brick28.height);*/
+  
 
 
   _assignControls() {
@@ -112,17 +124,37 @@ class Game{
     this.ctx.clearRect(0, 0, 1000, 600);
   }
 
+  // _checkCollision() {
+  // 1.  comprobar que la pelota y los bricks están en contacto
+  // const bricks = this.bricks;
+  // let collision = false;
+  // this._checkCollisionBricks
+  // this._checkCollisionBar (final)
+  // bricks.forEach(brick=> if posicion === ball.posicion {
+  //  collision = true;
+  // })
+  // if (collision)
+  // console.log( "choque")
+  // else console.log("libre")
+  // }
+
   _update() {
     this._clean();
     this._bounceWalls();
     this._drawBricks();
     this._drawCircle();
     this._drawSpaceBar();
+    // crear método this._checkCollisions()
     window.requestAnimationFrame(() =>{this._update()});
   }
 
   start() {
     this._assignControls();
+    this.generateInterval = setInterval(() => {
+      console.log('New brick')
+      this._generateBricks();
+    }, 10000);
+    this._generateBricks();
     this._update();
   }
 }
