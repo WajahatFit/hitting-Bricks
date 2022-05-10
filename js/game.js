@@ -32,6 +32,7 @@ class Game{
     this.brick26 = new Brick (780, 30, 60 , 10);
     this.brick27 = new Brick (850, 30, 60 , 10);
     this.brick28 = new Brick (920, 30, 60 , 10);
+    
 
   }
   _drawSpaceBar() {
@@ -44,7 +45,18 @@ class Game{
     this.ctx.arc(this.circle.x, this.circle.y, this.circle.size, 0, Math.PI * 2);
     this.ctx.fillStyle = 'blue';
     this.ctx.fill();
+
   }
+ _bounceWalls(){
+     this.circle.x += this.circle.dx;
+     this.circle.y += this.circle.dy;
+     if (this.circle.x + this.circle.size > 1000/* canvas width */ || this.circle.x - this.circle.size < 0){
+       this.circle.dx *= -1;
+     }
+     if (this.circle.y + this.circle.size > 600 /* canvas height */ || this.circle.y - this.circle.size < 0){
+         this.circle.dy *= -1;
+       }
+ }
 
   _drawBricks () {
     this.ctx.fillStyle = 'brown';
@@ -77,11 +89,6 @@ class Game{
     this.ctx.fillRect(this.brick26.x, this.brick20.y, this.brick20.width, this.brick20.height);
     this.ctx.fillRect(this.brick27.x, this.brick27.y, this.brick27.width, this.brick27.height);
     this.ctx.fillRect(this.brick28.x, this.brick28.y, this.brick28.width, this.brick28.height);
-    
-    
-
-    
-
   }
 
 
@@ -107,6 +114,7 @@ class Game{
 
   _update() {
     this._clean();
+    this._bounceWalls();
     this._drawBricks();
     this._drawCircle();
     this._drawSpaceBar();
