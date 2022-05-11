@@ -38,24 +38,23 @@ class Game{
     this.ctx.fillRect(this.brick1.x, this.brick1.y, this.brick1.width, this.brick1.height);
     this.ctx.fillRect(this.brick2.x, this.brick2.y, this.brick2.width, this.brick2.height);
     this.ctx.fillRect(this.brick3.x, this.brick3.y, this.brick3.width, this.brick3.height);
-    for(let i = 1; i < 5; i++ ){
-      this.bricks.push(i);
-      console.log(this.bricks)
-    }
+    
   }
 
   _checkCollision() {
     // 1.  comprobar que la pelota y los bricks están en contacto
-    //     // const bricks = this.bricks;
-    //     // let collision = false;
-    //     // this._checkCollisionBricks
+  const bricks = this.bricks;
+  let collision = false;
+  this._checkCollisionBricks
     //     // this._checkCollisionBar (final)
-    //     // bricks.forEach(brick=> if posicion === ball.posicion {
-    //     //  collision = true;
-    //     // })
-    //     // if (collision)
-    //     // console.log( "choque")
-    //     // else console.log("libre")
+  this.bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.x + this.circle.size){
+      collision = true;
+     }});
+     if (collision) {
+      console.log( "choque");
+     }else console.log("libre");
+  
+    
     
   }
 
@@ -81,6 +80,7 @@ class Game{
 
   _update() {
     this._clean();
+    this._checkCollision()
     this._bounceWalls();
     this._drawBricks();
     this._drawCircle();
