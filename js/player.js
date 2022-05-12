@@ -37,7 +37,8 @@ class Brick {
         this.x = x;
         this.y = y;
         this.width = width;
-        this.height = height;   
+        this.height = height;  
+        this.status = 'active' 
         
     //this.status = 'active' (pasarle la propiedad en el foreach del drawbricks)
     //_hide  this.brick.status = inactive

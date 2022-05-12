@@ -34,7 +34,7 @@ class Game{
     } else if(this.circle.y + this.circle.size > 600) {
       if (this.spaceBar.life === 0) {
         const losePage = document.getElementById('lose-page');
-        losePage.style = 'display:block';
+        losePage = 'display:block'
         // y cargarnos el canvas
       } else {
         this.spaceBar.life-=1;
@@ -56,26 +56,35 @@ class Game{
     for (let i = 0; i< 4; i++){
       let newBrick = new Brick(startX, 20, 150, 50);
       this.bricks.push(newBrick);
-      startX = startX + 200;
+      startX = startX + 250;
     }
-    this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
+    this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height, brick.status))
   }
 
-  _checkCollisionBricks () {
-
-  }
+  // _checkCollisionBricks () {
+  //   this.circle.forEach(brick => {
+  //     if(this.circle.x)
+  //   )
+    
+  // }
 
   _checkCollision() {
-    
-
-  const bricks = this.bricks;
-  let collision = false;
-  bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.y - this.circle.size){
-      collision = true;
-     }});
-     // if brick está colisionando, brick._hide() y quitarlo del array
+    this.bricks.forEach(elem =>{
+      if((this.circle.x >= elem.x && this.circle.x <= elem.x + elem.width) && (this.circle.y >= elem.y && this.circle.y <= elem.y + elem.height)){
+        let index = this.bricks.indexOf(elem);
+        this.bricks.splice(index, 1);
+      }
+    } ) 
     
   }
+  // const bricks = this.bricks;
+  // let collision = false;
+  // bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.y - this.circle.size){
+  //     collision = true;
+  //    }});
+     // if brick está colisionando, brick._hide() y quitarlo del array
+    
+  
 
   _assignControls() {
     // Controles del teclado
@@ -96,17 +105,21 @@ class Game{
   _clean(){
     this.ctx.clearRect(0, 0, 1000, 600);
   }
-//_drawscore getbyid innertext this.spacebar.life
+//_drawscore
+_drawScore(){
+  let lives = document.getElementById('life');
+  lives.innerText = this.spaceBar.life;
+} 
   _update() {
     this._backGround();
     this._clean();
     this._spaceBarCollision ();
-    this._checkCollision(this.brick1);
+    this._checkCollision();
     this._bounceWalls();
     this._drawBricks();
     this._drawCircle();
     this._drawSpaceBar();
-    //drawScore
+    this._drawScore();    //drawScore
     window.requestAnimationFrame(() =>{this._update()});
   }
 

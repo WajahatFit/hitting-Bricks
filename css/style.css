@@ -22,6 +22,10 @@
 #lose-page {
   display: none;
 }
+#life {
+  margin-left:85px;
+  
+}
 
 canvas {
   border: 1px solid black;
