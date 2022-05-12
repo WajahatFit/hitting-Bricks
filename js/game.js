@@ -9,6 +9,10 @@ class Game{
     this.brick2 = new Brick (550, 20, 150 , 50);
     this.brick3 = new Brick (850, 20, 150 , 50);
   }
+
+  _backGround () {
+    this.ctx.drawImage(bGroundImg, 0,0);
+  }
   _drawSpaceBar() {
     this.ctx.fillStyle = 'green';
     this.ctx.fillRect(this.spaceBar.x, this.spaceBar.y, this.spaceBar.width, this.spaceBar.height);
@@ -21,15 +25,25 @@ class Game{
     this.ctx.fill();
 
   }
+
  _bounceWalls(){
+   let life = 3;
      this.circle.x += this.circle.dx;
      this.circle.y += this.circle.dy;
      if (this.circle.x + this.circle.size > 1000/* canvas width */ || this.circle.x - this.circle.size < 0){
        this.circle.dx *= -1;
      }
-     if (this.circle.y + this.circle.size > 600 /* canvas height */ || this.circle.y - this.circle.size < 0){
-         this.circle.dy *= -1;
-       }
+       if (this.circle.y + this.circle.size > 600) {
+         life--;
+
+       } 
+       console.log(life) 
+ }
+
+ _spaceBarCollision () {
+  if (this.circle.y + this.circle.size > 600 || (this.circle.y + this.circle.size > this.spaceBar.y && (this.circle.x > this.spaceBar.x && this.circle.x <this.spaceBar.x+this.spaceBar.width) ) || this.circle.y - this.circle.size < 0){
+    this.circle.dy *= -1;
+  }
  }
 
   _drawBricks () {
@@ -43,17 +57,22 @@ class Game{
 
   _checkCollision() {
     // 1.  comprobar que la pelota y los bricks están en contacto
-  const bricks = this.bricks;
+
+  const bricks = this.brick;
   let collision = false;
   this._checkCollisionBricks
-    //     // this._checkCollisionBar (final)
-  this.bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.x + this.circle.size){
+  this.bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.y - this.circle.size){
       collision = true;
      }});
      if (collision) {
       console.log( "choque");
      }else console.log("libre");
-  
+
+// this._checkCollisionBar (final)
+    //  if(this.circle.y > this.player.y && this.circle.y < this.player.y + this.player.height && this.circle.x > this.player.x && this.circle.x < this.player.x + this.player.width){
+    //   this.circle.dx *= -1; 
+    //   this.circle.dy *= -1; 
+    // }
     
     
   }
@@ -79,8 +98,10 @@ class Game{
   }
 
   _update() {
+    this._backGround();
     this._clean();
-    this._checkCollision()
+    this._spaceBarCollision ();
+    this._checkCollision(this.brick1);
     this._bounceWalls();
     this._drawBricks();
     this._drawCircle();
