@@ -4,10 +4,6 @@ class Game{
     this.spaceBar = new Player (450, 550, 200, 20);
     this.circle = new Circle (200, 200, 20, 5, 4);
     this.bricks = [];
-    this.brick = new Brick (50, 20, 150 , 50);
-    this.brick1 = new Brick (300, 20, 150 , 50);
-    this.brick2 = new Brick (550, 20, 150 , 50);
-    this.brick3 = new Brick (850, 20, 150 , 50);
   }
 
   _backGround () {
@@ -27,18 +23,26 @@ class Game{
   }
 
  _bounceWalls(){
-   let life = 3;
      this.circle.x += this.circle.dx;
      this.circle.y += this.circle.dy;
      if (this.circle.x + this.circle.size > 1000/* canvas width */ || this.circle.x - this.circle.size < 0){
        this.circle.dx *= -1;
-     }
-       if (this.circle.y + this.circle.size > 600) {
-         life--;
-
-       } 
-       console.log(life) 
+      }
+      
+    if(this.circle.y - this.circle.size <= 0){
+      this.circle.dy *=-1;
+    } else if(this.circle.y + this.circle.size > 600) {
+      if (this.spaceBar.life === 0) {
+        const losePage = document.getElementById('lose-page');
+        losePage.style = 'display:block';
+        // y cargarnos el canvas
+      } else {
+        this.spaceBar.life-=1;
+      }
+    }
  }
+
+
 
  _spaceBarCollision () {
   if (this.circle.y + this.circle.size > 600 || (this.circle.y + this.circle.size > this.spaceBar.y && (this.circle.x > this.spaceBar.x && this.circle.x <this.spaceBar.x+this.spaceBar.width) ) || this.circle.y - this.circle.size < 0){
@@ -48,32 +52,28 @@ class Game{
 
   _drawBricks () {
     this.ctx.fillStyle = 'brown';
-    this.ctx.fillRect(this.brick.x, this.brick.y, this.brick.width, this.brick.height);
-    this.ctx.fillRect(this.brick1.x, this.brick1.y, this.brick1.width, this.brick1.height);
-    this.ctx.fillRect(this.brick2.x, this.brick2.y, this.brick2.width, this.brick2.height);
-    this.ctx.fillRect(this.brick3.x, this.brick3.y, this.brick3.width, this.brick3.height);
-    
+    let startX = 50;
+    for (let i = 0; i< 4; i++){
+      let newBrick = new Brick(startX, 20, 150, 50);
+      this.bricks.push(newBrick);
+      startX = startX + 200;
+    }
+    this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
+  }
+
+  _checkCollisionBricks () {
+
   }
 
   _checkCollision() {
-    // 1.  comprobar que la pelota y los bricks están en contacto
+    
 
-  const bricks = this.brick;
+  const bricks = this.bricks;
   let collision = false;
-  this._checkCollisionBricks
-  this.bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.y - this.circle.size){
+  bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.y - this.circle.size){
       collision = true;
      }});
-     if (collision) {
-      console.log( "choque");
-     }else console.log("libre");
-
-// this._checkCollisionBar (final)
-    //  if(this.circle.y > this.player.y && this.circle.y < this.player.y + this.player.height && this.circle.x > this.player.x && this.circle.x < this.player.x + this.player.width){
-    //   this.circle.dx *= -1; 
-    //   this.circle.dy *= -1; 
-    // }
-    
+     // if brick está colisionando, brick._hide() y quitarlo del array
     
   }
 
@@ -96,7 +96,7 @@ class Game{
   _clean(){
     this.ctx.clearRect(0, 0, 1000, 600);
   }
-
+//_drawscore getbyid innertext this.spacebar.life
   _update() {
     this._backGround();
     this._clean();
@@ -106,6 +106,7 @@ class Game{
     this._drawBricks();
     this._drawCircle();
     this._drawSpaceBar();
+    //drawScore
     window.requestAnimationFrame(() =>{this._update()});
   }
 

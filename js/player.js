@@ -4,6 +4,7 @@ class Player {
         this.y = y;
         this.width =width;
         this.height = height;
+        this.life = 3;
     }
 
     moveRight (){
@@ -36,6 +37,9 @@ class Brick {
         this.x = x;
         this.y = y;
         this.width = width;
-        this.height = height;    
+        this.height = height;   
+        
+    //this.status = 'active' (pasarle la propiedad en el foreach del drawbricks)
+    //_hide  this.brick.status = inactive
     }
 }
