@@ -4,9 +4,13 @@
 }
 
 /* Basic styles, change according to your style */
+body{
+  background-color: aqua;
+}
 
 #start-page,
 #lose-page {
+  border: 1px solid black;
   height: 600px;
   width: 1000px;
   display: flex;
@@ -14,17 +18,42 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
+  
   margin: 0 auto;
-  border: 1px solid black;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 #lose-page {
   display: none;
+  position:absolute;
+  width: 1000px;
+  height: 600px;
+  background: rgba(0,0,0,0);
+  margin-left:20;
+
 }
-#life {
-  margin-left:85px;
-  
+#gameover{
+  width: 1000px;
+  position: absolute;
+  top: 20px;
+  left: 150px;
+  display:none;
+
+}
+#restart {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  cursor: pointer;
+  font-size: 3em;
+  color: white;
+  font-size: ;
+}
+
+#canvas{
+  background-image: url(../images/bg1.jpg);
+  background-size:cover ;
+
 }
 
 canvas {
