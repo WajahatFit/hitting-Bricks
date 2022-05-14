@@ -11,6 +11,9 @@ score.src = '../images/life.png';
 const wallHit = new Audio();
 wallHit.src = '../Sounds/wall.mp3';
 
+const brickHit = new Audio ();
+brickHit.src = '../Sounds/brick_hit.mp3'; 
+
 const paddleHit = new Audio();
 paddleHit.src = '../Sounds/paddle_hit.mp3';
 
@@ -24,7 +27,3 @@ restart.addEventListener('click', function() {
   location.reload();
 })
 
-function gOver () {
-  gameOver.style.display = 'block';
-
-}

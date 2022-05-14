@@ -5,7 +5,7 @@ class Game{
     this.circle = new Circle (200, 200, 20, 5, 4);
     this.bricks = [];
     this.brick = new Brick ()
-    this.gameOver = undefined;
+    this.gameOver = false;
   }
   _drawSpaceBar() {
     this.ctx.fillStyle = 'green';
@@ -23,9 +23,7 @@ class Game{
     this.ctx.fill();
     this.ctx.strokeStyle = '#2e3548'; 
     this.ctx.stroke();
-
     this.ctx.closePath();
-
   }
 
  _bounceWalls(){
@@ -39,13 +37,10 @@ class Game{
     if(this.circle.y - this.circle.size <= 0){
       this.circle.dy *=-1;
     } else if(this.circle.y + this.circle.size > 600) {
-      if (this.spaceBar.life === 0) {
-        const losePage = document.getElementById('lose-page');
-        losePage.style.display= 'block'
-        // y cargarnos el canvas
-        this.gameOver();
+      if (this.spaceBar.life === 1) {
+        this._gameOver();
       } else {
-        this.spaceBar.life -=1;
+        this.spaceBar.life -= 1;
         lifeLost.play();
       }
     }
@@ -64,19 +59,25 @@ class Game{
   _drawBricks () {
     this.ctx.fillStyle = 'brown';
     let startX = 50;
-    for (let i = 0; i< 4; i++){
-      let newBrick = new Brick(startX, 20, 150, 50, this.status);
-      this.bricks.push(newBrick);
-      startX = startX + 250;
+    if (this.bricks.length === 0){
+
+      for (let i = 0; i< 4; i++){
+        let newBrick = new Brick(startX, 20, 150, 50, this.status);
+        this.bricks.push(newBrick);
+        startX = startX + 250;
+      }
     }
+    
     this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
   }
 
   _checkCollision() {
     this.bricks.forEach(elem =>{
       if((this.circle.x >= elem.x && this.circle.x <= elem.x + elem.width) && (this.circle.y >= elem.y && this.circle.y <= elem.y + elem.height)){
+        brickHit.play();
         let index = this.bricks.indexOf(elem);
         this.bricks.splice(index, 1);
+        // if this.points > 3 _win() else this.points + 1
       }
       
     } ) 
@@ -94,11 +95,9 @@ class Game{
      // if brick está colisionando, brick._hide() y quitarlo del array
     
   _gameOver(){
-    this.gameOver = false;
-    if(this.spaceBar.life <= 0){
-      gOver();
-      this.spaceBar.gameOver = true;
-    }
+    this.gameOver = true;
+    const losePage = document.getElementById('lose-page');
+    losePage.style.display= 'block'
   }
 
   _assignControls() {
@@ -127,7 +126,11 @@ _drawLife(text, textX, textY, img, imgX, imgY){
   _clean(){
     this.ctx.clearRect(0, 0, 1000, 600);
   }
-//_drawscore
+
+  _gOver () {
+    gameOver.style.display = 'block';
+  
+  }
   
   _update() {
     this._clean();
@@ -135,7 +138,6 @@ _drawLife(text, textX, textY, img, imgX, imgY){
     this._spaceBarCollision ();
     this._checkCollision();
     this._bounceWalls();
-    this._gameOver();
     this._drawBricks();
     this._drawCircle();
     this._drawSpaceBar();
