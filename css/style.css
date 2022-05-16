@@ -28,24 +28,36 @@ body{
   width: 1000px;
   height: 600px;
   background: rgba(0,0,0,0);
-  margin-left:20;
+  margin: 0 auto;
+}
+
+#restart {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  cursor: pointer;
+  font-size: 3em;
+  color: white;
+}
+
+#win-page{
+  display:none;
+  position: absolute;
+  width:1000px;
+  height: 600px;
+  left:500px;
+
+  
 }
 #gameover{
   width: 1005px;
   height: 605px;
   position: absolute;
   bottom: 9px;
-  left: 130px;
+  left: 100px;
 
 }
-#restart {
-  position: absolute;
-  top: 500px;
-  left: 530px;
-  cursor: pointer;
-  font-size: 3em;
-  color: white;
-}
+
 
 #start{
   background-color: bisque;

@@ -6,6 +6,7 @@ class Game{
     this.bricks = [];
     this.brick = new Brick ()
     this.gameOver = false;
+    this.points = 1;
   }
   _drawSpaceBar() {
     this.ctx.fillStyle = 'green';
@@ -77,9 +78,13 @@ class Game{
         brickHit.play();
         let index = this.bricks.indexOf(elem);
         this.bricks.splice(index, 1);
-        // if this.points > 3 _win() else this.points + 1
+        if(this.points > 3){
+          this._win();
+        } else {
+          this.points += 1;
+        }
       }
-      
+      console.log(this.points);
     } ) 
     
   }
@@ -97,7 +102,11 @@ class Game{
   _gameOver(){
     this.gameOver = true;
     const losePage = document.getElementById('lose-page');
-    losePage.style.display= 'block'
+    losePage.style.display= 'block';
+  }
+  _win(){
+    const winPage = document.getElementById('win-page');
+    winPage.style.display= 'block';
   }
 
   _assignControls() {
