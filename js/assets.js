@@ -7,6 +7,9 @@ bGroundImg.src = '../images/bg1.jpg';
 const score = new Image();
 score.src = '../images/life.png';
 
+const pointImg = new Image();
+pointImg.src = '../images/score.png'
+
 // sounds
 const wallHit = new Audio();
 wallHit.src = '../Sounds/wall.mp3';
@@ -26,4 +29,12 @@ const restart = document.getElementById('restart');
 restart.addEventListener('click', function() {
   location.reload();
 })
+
+// font
+
+// WebFont.load({
+//   google: {
+//       families: ['Germania One']
+//   }
+// });
 

@@ -1,3 +1,5 @@
+import(https://fonts.google.com/specimen/Germania+One);
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +7,7 @@
 
 /* Basic styles, change according to your style */
 body{
+  font-family:'Germania One';
   background-color: aqua;
 }
 
