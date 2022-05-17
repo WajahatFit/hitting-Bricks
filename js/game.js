@@ -85,7 +85,7 @@ class Game{
     this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
   }
 
-  _checkCollision() {
+  _checkCollision()  {
     this.bricks.forEach(elem =>{
       if((this.circle.x > elem.x && this.circle.x <= elem.x + elem.width) && (this.circle.y > elem.y && this.circle.y < elem.y + elem.height)){
         brickHit.play();
