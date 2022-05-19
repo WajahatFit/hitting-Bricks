@@ -27,13 +27,35 @@ body{
   margin-top: 10px;
   
 }
+/* start button*/
+#start{
+  background-color:purple;
+  color:white;
+  border: none;
+  text-align: center;
+  font-family:'Germania One';
+  cursor: pointer;
+  width:45%;
+  padding: 8px 5px;
+  font-size: 4em;
+  border-radius: 10px;
+  transition-duration: 1s;
+}
+
+#start:hover{
+ box-shadow: 0 12px 16px rgba(0,0,0,0.25), 0 17px 50px 0 rgba(0,0,0,0.19);
+ background-color:rgb(216, 216, 216);
+ color:purple;
+}
+
+#start-page button {
+  margin-top: 400px;
+}
+
+/* start page styles*/
 
 #start-page p {
   font-size: 3rem;
-}
-
-.upper {
-  position: relative;
 }
 
 #start-page h1 {
@@ -47,18 +69,31 @@ body{
   color:rgb(188, 183, 183);
   
 }
-
-#start-page button {
-  margin-top: 400px;
-}
-
+/* loose page styles */
 #lose-page {
+  min-width: 100%;
+  min-height: 100%;
   display: none;
   position:absolute;
   margin: 0 auto;
   background: linear-gradient(-30deg, #9400c6, #d277e7, #4c00d8, #d80abd);
   background-size: 400% 400%;
 }
+
+#lose-page h1 {
+  margin: 0 auto;
+  font-size: 6rem;
+  color: white;
+}
+#lose-page p {
+  font-size: 4rem;
+  color: blue;
+  border: 1px solid whitesmoke;
+  border-radius: 4px;
+  border-width: 2px;
+}
+
+/* restart button/ Play Again! */
 
 #restart-btn {
   display: inline-block;
@@ -101,17 +136,18 @@ body{
   right: 0;
 }
 
-#lose-page h1 {
-  font-size: 6rem;
-  color: white;
+#win-page {
+  display: none;
+  min-width: 100%;
+  min-height: 100%;
+  display: none;
+  position:absolute;
+  margin: 0 auto;
+  background: linear-gradient(-30deg, #9400c6, #d277e7, #4c00d8, #d80abd);
+  background-size: 400% 400%;
 }
-
-#win-page{
-  display:none;
-  position: absolute;
-  width:1000px;
-  height: 600px;
-  left:500px;
+#win-page h1 {
+  align-text: center;
 }
 
 #gameover{
@@ -120,28 +156,6 @@ body{
   position: absolute;
   bottom: 9px;
   left: 100px;
-
-}
-
-
-#start{
-  background-color:purple;
-  color:white;
-  border: none;
-  text-align: center;
-  font-family:'Germania One';
-  cursor: pointer;
-  width:45%;
-  padding: 8px 5px;
-  font-size: 4em;
-  border-radius: 10px;
-  transition-duration: 1s;
-}
-
-#start:hover{
- box-shadow: 0 12px 16px rgba(0,0,0,0.25), 0 17px 50px 0 rgba(0,0,0,0.19);
- background-color:rgb(216, 216, 216);
- color:purple;
 
 }
 

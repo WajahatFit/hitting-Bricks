@@ -30,5 +30,5 @@ restart.addEventListener('click', function() {
   location.reload();
 })
 
-
+// game images & sound files;
 

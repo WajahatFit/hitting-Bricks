@@ -12,6 +12,8 @@ class Game{
     this.points = 0;
     this.ctx.lineWidth = 5;
   }
+
+  // draw spaceBar in canvas
   _drawSpaceBar() {
     this.ctx.fillStyle = 'white';
     this.ctx.fillRect(this.spaceBar.x, this.spaceBar.y, this.spaceBar.width, this.spaceBar.height);
@@ -19,11 +21,11 @@ class Game{
     this.ctx.strokeRect(this.spaceBar.x, this.spaceBar.y, this.spaceBar.width, this.spaceBar.height);
     
   }
-
+// draw life img/icon
   _drawLife () {
     this.ctx.drawImage(score, 550, 950);
   }
-
+// draw ball
   _drawCircle () {
     this.ctx.beginPath();
     this.ctx.arc(this.circle.x, this.circle.y, this.circle.size, 0, Math.PI * 2);
@@ -33,11 +35,11 @@ class Game{
     this.ctx.stroke();
     this.ctx.closePath();
   }
-
+// collisions with the walls, roof & floor of the canvas
  _bounceWalls(){
      this.circle.x += this.circle.dx;
      this.circle.y += this.circle.dy;
-     if (this.circle.x + this.circle.size > 1000/* canvas width */ || this.circle.x - this.circle.size < 0){
+     if (this.circle.x + this.circle.size > 1000|| this.circle.x - this.circle.size < 0){
        this.circle.dx *= -1;
        wallHit.play();
       }
@@ -55,7 +57,7 @@ class Game{
  }
 
 
-
+// ball collision with the space bar
 
  _spaceBarCollision () {
   if (this.circle.y + this.circle.size > 600 || (this.circle.y + this.circle.size > this.spaceBar.y && (this.circle.x > this.spaceBar.x && this.circle.x <this.spaceBar.x+this.spaceBar.width) ) || this.circle.y - this.circle.size < 0){
@@ -63,6 +65,7 @@ class Game{
     paddleHit.play();
   }
  }
+ // pre-loaded bricks in game
 
  _drawInitialBricks(){
     let startX = 50;
@@ -77,6 +80,7 @@ class Game{
         startX = startX + 250;
       }
    }
+   // second row of bricks
     if (this.bricks2.length === 0){
 
       for (let c = 0; c< 4; c++){
@@ -86,7 +90,7 @@ class Game{
       }
     }
  }
-
+ // drawing bricks in game
   _drawBricks () {
     this.ctx.fillStyle = 'brown';
     this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
@@ -94,6 +98,7 @@ class Game{
     )
   }
 
+  //collisions check with bricks
   _checkCollision()  {
     this.bricks.forEach(elem =>{
       if((this.circle.x > elem.x && this.circle.x <= elem.x + elem.width) && (this.circle.y > elem.y && this.circle.y < elem.y + elem.height)){
@@ -134,6 +139,7 @@ class Game{
     const winPage = document.getElementById('win-page');
     winPage.style.display= 'block';
     this.canvas.remove();
+    document.getElementsByTagName('canvas')[0].remove();
   }
 
   _assignControls() {
