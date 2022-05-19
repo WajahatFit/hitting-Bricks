@@ -24,11 +24,11 @@ const lifeLost = new Audio();
 lifeLost.src = '../Sounds/life_lost.mp3';
 
 const gameOver = document.getElementById('gameover');
-const restart = document.getElementById('restart');
+const restart = document.getElementById('restart-btn');
 
 restart.addEventListener('click', function() {
   location.reload();
 })
 
-// font
+
 

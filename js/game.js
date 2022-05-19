@@ -8,9 +8,8 @@ class Game{
     this.circle = new Circle (200, 200, 20, 10, 10);
     this.bricks = [];
     this.bricks2 =  [];
-    this.brick = new Brick ();
     this.gameOver = false;
-    this.points = 1;
+    this.points = 0;
     this.ctx.lineWidth = 5;
   }
   _drawSpaceBar() {
@@ -65,8 +64,7 @@ class Game{
   }
  }
 
-  _drawBricks () {
-    this.ctx.fillStyle = 'brown';
+ _drawInitialBricks(){
     let startX = 50;
     let startX2 = 50;
     let startY = 90;
@@ -87,7 +85,10 @@ class Game{
         startX2 = startX2 + 250;
       }
     }
-    
+ }
+
+  _drawBricks () {
+    this.ctx.fillStyle = 'brown';
     this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
     this.bricks2.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height)
     )
@@ -99,10 +100,7 @@ class Game{
         brickHit.play();
         let index = this.bricks.indexOf(elem);
         this.bricks.splice(index, 1);
-        if(this.points > 5 && this.points< 100) {
-          this.speed += 2;
-        }
-          else if (this.points > 100) {
+        if(this.bricks.length === 0 && this.bricks2.length === 0) {
             this._win();
           }else {
           this.points += 1;
@@ -116,7 +114,7 @@ class Game{
         brickHit.play();
         let index = this.bricks2.indexOf(elem);
         this.bricks2.splice(index, 1);
-        if(this.points > 100){
+        if(this.bricks.length === 0 && this.bricks2.length === 0){
           this._win();
         } else {
           this.points += 1;
@@ -135,6 +133,7 @@ class Game{
   _win(){
     const winPage = document.getElementById('win-page');
     winPage.style.display= 'block';
+    this.canvas.remove();
   }
 
   _assignControls() {
@@ -190,5 +189,6 @@ _drawLife() {
   start() {
     this._assignControls();
     this._update();
+    this._drawInitialBricks();
   }
 }

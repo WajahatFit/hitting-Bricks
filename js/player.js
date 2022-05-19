@@ -22,26 +22,5 @@ class Player {
 
 }
 
-class Circle {
-    constructor (x, y, size, dx, dy, speed){
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.dx = dx;
-        this.dy = dy; 
-        this.speed = speed;
-    }
-}
+// this is spaceBar in Game!
 
-class Brick {
-    constructor(x, y, width, height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;  
-        this.status = 'active'; 
-        
-    // this.status = 'active' (pasarle la propiedad en el foreach del drawbricks)
-    // _hide  this.brick.status = inactive
-    }
-}
