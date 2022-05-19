@@ -1,4 +1,4 @@
-import(https://fonts.google.com/specimen/Germania+One);
+@import url('https://fonts.google.com/specimen/Germania+One');
 
 * {
   margin: 0;
@@ -7,15 +7,17 @@ import(https://fonts.google.com/specimen/Germania+One);
 
 /* Basic styles, change according to your style */
 body{
-  font-family:'Germania One';
-  background-color: aqua;
+  margin: 0;
+  font-family: 'Germania One', Times, serif;
+  background: linear-gradient(-20deg, #c6002b, #da0758, #d8b800, #c30ad8);
+  background-size: 400% 400%;
 }
 
 #start-page,
 #lose-page {
-  
   height: 600px;
   width: 1000px;
+  padding: 100px 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,24 +25,79 @@ body{
   text-align: center;
   margin: 0 auto;
   margin-top: 10px;
+  
+}
+
+#start-page p {
+  font-size: 3rem;
+}
+
+.upper {
+  position: relative;
+}
+
+#start-page h1 {
+  font-family:'Germania One', Tahoma, Verdana, sans-serif;
+  font-size: 6rem;
+  margin-bottom: 40px;
+  border: 3px solid black;
+  border-radius: 2px;
+  padding: 30px 80px;
+  color:rgb(188, 183, 183);
+  
+}
+
+#start-page button {
+  margin-top: 400px;
 }
 
 #lose-page {
   display: none;
   position:absolute;
-  width: 1000px;
-  height: 600px;
-  background: rgba(0,0,0,0);
   margin: 0 auto;
+  background: linear-gradient(-20deg, #c6002b, #da0758, #d8b800, #c30ad8);
+  background-size: 400% 400%;
 }
 
-#restart {
-  position: absolute;
-  top: 500px;
-  left: 500px;
+#restart-btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 30px;
+  
+  width: 28%;
+  transition: all 0.5s;
   cursor: pointer;
-  font-size: 3em;
-  color: white;
+  margin: 5px;
+  
+}
+#restart-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#restart-btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#restart-btn:hover span {
+  padding-right: 25px;
+}
+
+#restart-btn:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 #win-page{
@@ -49,9 +106,8 @@ body{
   width:1000px;
   height: 600px;
   left:500px;
-
-  
 }
+
 #gameover{
   width: 1005px;
   height: 605px;
@@ -63,11 +119,26 @@ body{
 
 
 #start{
-  background-color: bisque;
-  padding: 10px 10px;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 2em;
+  background-color:purple;
+  color:white;
+  border: none;
+  text-align: center;
+  font-family:'Germania One';
+  cursor: pointer;
+  width:45%;
+  padding: 8px 5px;
+  font-size: 4em;
+  border-radius: 10px;
+  transition-duration: 1s;
 }
+
+#start:hover{
+ box-shadow: 0 12px 16px rgba(0,0,0,0.25), 0 17px 50px 0 rgba(0,0,0,0.19);
+ background-color:rgb(216, 216, 216);
+ color:purple;
+
+}
+
 #canvas{
   background-image: url(../images/bg1.jpg);
   background-size:cover ;

@@ -1,12 +1,14 @@
 
 
 class Game{
-  constructor(context) {
+  constructor(context, canvas) {
     this.ctx = context;
+    this.canvas = canvas;
     this.spaceBar = new Player (450, 555, 200, 40);
     this.circle = new Circle (200, 200, 20, 10, 10);
     this.bricks = [];
-    this.brick = new Brick ()
+    this.bricks2 =  [];
+    this.brick = new Brick ();
     this.gameOver = false;
     this.points = 1;
     this.ctx.lineWidth = 5;
@@ -44,7 +46,7 @@ class Game{
     if(this.circle.y - this.circle.size <= 0){
       this.circle.dy *=-1;
     } else if(this.circle.y + this.circle.size > 600) {
-      if (this.spaceBar.life <= 1) {
+      if (this.spaceBar.life < 1) {
         this._gameOver();
       } else {
         this.spaceBar.life -= 1;
@@ -66,23 +68,29 @@ class Game{
   _drawBricks () {
     this.ctx.fillStyle = 'brown';
     let startX = 50;
+    let startX2 = 50;
     let startY = 90;
+    let startY2 = 150; 
     if (this.bricks.length === 0){
 
-      for (let i = 0; i< 4; i++){
+      for (let c = 0; c < 4; c++){
         let newBrick = new Brick(startX, startY, 150, 50, this.status);
         this.bricks.push(newBrick);
         startX = startX + 250;
-        for(r = 0; r < 4; r++){
-          r = [];
-          let newBrick = new Brick(startX, startY, 150, 50, this.status);
-          this.bricks.push(newBrick);
-          startY = startY + 20;
-        }
+      }
+   }
+    if (this.bricks2.length === 0){
+
+      for (let c = 0; c< 4; c++){
+        let newBrick = new Brick(startX2, startY2, 150, 50, this.status);
+        this.bricks2.push(newBrick);
+        startX2 = startX2 + 250;
       }
     }
     
     this.bricks.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height))
+    this.bricks2.forEach(brick => this.ctx.fillRect(brick.x, brick.y, brick.width, brick.height)
+    )
   }
 
   _checkCollision()  {
@@ -91,33 +99,38 @@ class Game{
         brickHit.play();
         let index = this.bricks.indexOf(elem);
         this.bricks.splice(index, 1);
+        if(this.points > 5 && this.points< 100) {
+          this.speed += 2;
+        }
+          else if (this.points > 100) {
+            this._win();
+          }else {
+          this.points += 1;
+          }
+      }
+  
+    } )
+    
+    this.bricks2.forEach(elem =>{
+      if((this.circle.x > elem.x && this.circle.x <= elem.x + elem.width) && (this.circle.y > elem.y && this.circle.y < elem.y + elem.height)){
+        brickHit.play();
+        let index = this.bricks2.indexOf(elem);
+        this.bricks2.splice(index, 1);
         if(this.points > 100){
           this._win();
         } else {
           this.points += 1;
-          
-
         }
       }
-      console.log(this.points);
-    } ) 
+  } )
     
   }
-
-  // _ballBrickCollision() {
-  //   if (this.circle.x + this.circle.y > this.bricks.x && this.circle.x - this.circle.size < this.bricks.x + this.bricks.width)
-  // }
-  // const bricks = this.bricks;
-  // let collision = false;
-  // bricks.forEach(brick => {if (brick.x + brick.width  === this.circle.y - this.circle.size){
-  //     collision = true;
-  //    }});
-     // if brick está colisionando, brick._hide() y quitarlo del array
     
   _gameOver(){
     this.gameOver = true;
     const losePage = document.getElementById('lose-page');
     losePage.style.display= 'block';
+    this.canvas.remove();
   }
   _win(){
     const winPage = document.getElementById('win-page');

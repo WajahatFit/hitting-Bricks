@@ -32,9 +32,3 @@ restart.addEventListener('click', function() {
 
 // font
 
-// WebFont.load({
-//   google: {
-//       families: ['Germania One']
-//   }
-// });
-

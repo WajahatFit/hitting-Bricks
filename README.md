@@ -14,12 +14,12 @@ Minimum user stories:
 
 - User can move right by hitting right arrow on the keyboard.
 - User can move left by hitting left arrow on the keyboard.
-- User will loose if scores get to 0.
+- Game will finish if scores gets to 0.
 - User can
 
 ## User stories Backlog
 
-- User will sum points when it catches any droplet.
+- User will sum points when it breaks any of the bricks in the game.
 
 ## File structure
 
