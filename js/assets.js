@@ -25,8 +25,14 @@ lifeLost.src = '../Sounds/life_lost.mp3';
 
 const gameOver = document.getElementById('gameover');
 const restart = document.getElementById('restart-btn');
+const restartGame = document.getElementById('restart-btn1');
+
 
 restart.addEventListener('click', function() {
+  location.reload();
+})
+
+restartGame.addEventListener('click', function() {
   location.reload();
 })
 
