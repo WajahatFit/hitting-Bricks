@@ -32,4 +32,4 @@ Minimum user stories:
 ## Useful links
 
 - [Presentation slides](https://slides.com/wajahatali/minimal/edit);
-- [Deployed game]()
+- [Deployed game](https://wajahatfit.github.io/hitting-Bricks/)
