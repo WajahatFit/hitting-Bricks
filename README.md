@@ -1,4 +1,4 @@
-# Game name
+# Hitting The Bricks
 
 <img src="./images/game screenShot.png">
 
