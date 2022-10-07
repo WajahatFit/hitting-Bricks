@@ -1,4 +1,4 @@
-@import url('https://fonts.google.com/specimen/Germania+One');
+@import url("https://fonts.google.com/specimen/Germania+One");
 
 * {
   margin: 0;
@@ -6,27 +6,29 @@
 }
 
 /* Basic styles, change according to your style */
-body{
+body {
   margin: 0;
-  font-family: 'Germania One', Times, serif;
+  font-family: "Germania One", Times, serif;
   background: linear-gradient(50deg, #4f005b, #c6009b, #d8b800, #5bff3b);
   background-size: 400% 400%;
   animation: gradient 5s ease infinite;
 }
-@keyframes gradient{
-  0%{background-position: 0% 50%;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  50%{background-position:100% 50%;
+  50% {
+    background-position: 100% 50%;
   }
-  100%{background-position:0% 50%;
+  100% {
+    background-position: 0% 50%;
   }
 }
 
 #start-page,
 #lose-page {
   height: 600px;
-  width: 1000px;
-  padding: 100px 20vw;
+  width: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,24 +38,24 @@ body{
   margin-top: 10px;
 }
 /* start button*/
-#start{
-  background-color:purple;
-  color:white;
+#start {
+  background-color: purple;
+  color: white;
   border: none;
   text-align: center;
-  font-family:'Germania One';
+  font-family: "Germania One";
   cursor: pointer;
-  width:45%;
+  width: 45%;
   padding: 8px 5px;
   font-size: 4em;
   border-radius: 10px;
   transition-duration: 0.8s;
 }
 
-#start:hover{
- box-shadow: 0 12px 16px rgba(0,0,0,0.25), 0 17px 50px 0 rgba(0,0,0,0.19);
- background-color:rgb(216, 216, 216);
- color:purple;
+#start:hover {
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.25), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(216, 216, 216);
+  color: purple;
 }
 
 #start-page button {
@@ -64,36 +66,30 @@ body{
 
 #start-page p {
   font-size: 3rem;
-  color:#24ffff;
+  color: #24ffff;
 }
 
 #start-page h1 {
-  font-family:'Germania One', Tahoma, Verdana, sans-serif;
+  font-family: "Germania One", Tahoma, Verdana, sans-serif;
   font-size: 6rem;
   margin-top: 300px;
   margin-bottom: 40px;
   border: 3px solid black;
   border-radius: 2px;
   padding: 30px 80px;
-  color:rgb(247, 217, 217);
-  
+  color: rgb(247, 217, 217);
 }
 /* loose page styles */
 #lose-page {
   min-width: 100%;
   min-height: 100%;
   display: none;
-  position:absolute;
   margin: 0 auto;
-  background: linear-gradient(-30deg, #ffffff, #c33b6b, #d80019, #570109);
-  background-size: 400% 400%;
-  animation: gradient 4s ease infinite;
 }
 
 #lose-page h1 {
-  position: absolute;
-  top: 5%;
-  left: 25%;
+  padding: 100px;
+  margin: 0 auto;
   transform: translate(-50% -50%);
   font-size: 6rem;
   color: white;
@@ -105,10 +101,7 @@ body{
   border-radius: 4px;
   border-width: 1px;
   width: 35%;
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  transform: translate(-50% -50%);
+  margin: 0 auto;
 }
 
 /* restart button/ Play Again! */
@@ -119,17 +112,15 @@ body{
   background-color: #fcd5fe;
   border: none;
   color: #160909;
-  font-weight:300;
+  font-weight: 300;
   text-align: center;
   font-size: 3rem;
-  padding: 30px;
+  padding: 20px;
   width: 30%;
   transition: all 0.5s;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 23%;
-  transform: translate(-50% -50%);
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 #restart-btn span {
@@ -140,7 +131,7 @@ body{
 }
 
 #restart-btn span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -157,7 +148,7 @@ body{
   right: 0;
 }
 #restart-btn:hover {
-  box-shadow: 0 12px 16px rgba(0,0,0,0.25), 0 17px 50px 0 rgba(0,0,0,0.19)
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.25), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 #restart-btn1 {
@@ -166,7 +157,7 @@ body{
   background-color: #85ff04;
   border: none;
   color: #160909;
-  font-weight:300;
+  font-weight: 300;
   text-align: center;
   font-size: 3rem;
   padding: 20px;
@@ -184,40 +175,35 @@ body{
   display: inline-block;
   position: relative;
   transition: 0.5s;
-  
 }
 
 #restart-btn1 span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
   right: -65px;
   transition: 0.5s;
-  
 }
 
 #restart-btn1:hover span {
   padding-right: 25px;
-  
 }
 
 #restart-btn1:hover span:after {
   opacity: 1;
   right: 0;
-  
 }
 #restart-btn1:hover {
-  box-shadow: 0 12px 16px rgba(0,0,0,0.25), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.25), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 #win-page {
   display: none;
   width: 100%;
   min-height: 100%;
   display: none;
-  position:absolute;
+  position: absolute;
   margin: 0 auto;
   background: linear-gradient(-40deg, #bf00ff, #34013f, #7547ca, #003892);
   background-size: 400% 400%;
@@ -226,9 +212,8 @@ body{
 #win-page h1 {
   font-size: 6rem;
   border: 1px solid #fff;
-  position: absolute;
-  top: 20%;
-  left: 30%;
+  margin: 60px;
+  text-align: center;
   transform: translate(-50% -50%);
   padding: 20px 40px;
   color: white;
@@ -236,27 +221,25 @@ body{
 #win-page p {
   position: absolute;
   top: 40%;
-  left: 40%;
+  left: 43%;
   transform: translate(-40% -40%);
   padding: 20px 40px;
-  font-size: 3rem;
-  color:#fff;
-  font-family: 'Germania One', Arial, Helvetica;
+  font-size: 5rem;
+  color: #fff;
+  font-family: "Germania One", Arial, Helvetica;
 }
 
-#gameover{
+#gameover {
   width: 1005px;
   height: 605px;
   position: absolute;
   bottom: 9px;
   left: 100px;
-
 }
 
-#canvas{
+#canvas {
   background-image: url(../images/bg1.jpg);
-  background-size:cover ;
-
+  background-size: cover;
 }
 
 canvas {
